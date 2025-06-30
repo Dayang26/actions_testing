@@ -1,8 +1,12 @@
+name: "build React project"
 on: push
 jobs:
   npm-build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4.2.2
-      - run: npm install
-      - run: npm run build
+      - name: "read content form repo"
+        uses: actions/checkout@v4.2.2
+      - name: "install dependencies"
+        run: npm install
+      - name: "package the project"
+        run: npm run build
