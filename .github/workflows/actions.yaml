@@ -1,12 +1,19 @@
 name: "build React project"
 on: push
+permissions:
+  contents: write
 jobs:
   npm-build:
     runs-on: ubuntu-22.04
     steps:
       - name: "read content form repo"
         uses: actions/checkout@v4.2.2
-      - name: "install dependencies"
-        run: npm install
-      - name: "package the project"
-        run: npm run build
+      - name: "install dependencies and build the project"
+        run: |
+          npm install
+          npm run build
+      - name: "Deploy 🚀"
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: main
+          folder: build
